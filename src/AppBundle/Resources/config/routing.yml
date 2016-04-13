@@ -1,0 +1,4 @@
+tasks:
+    resource: "@AppBundle/Controller/TaskController.php"
+    type:     rest
+    prefix: /api

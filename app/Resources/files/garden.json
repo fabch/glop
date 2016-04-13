@@ -1,0 +1,45 @@
+{
+  "id": 0,
+  "text": "abudsqdqsd Dhabi",
+  "indicators": [
+    {
+      "id": 0,
+      "name_canonical": "indicator-0",
+      "name": "Indicator",
+      "picto": "picto-1",
+      "cl": "picto-cl1",
+      "criteria": 0,
+      "val": 0,
+      "min": 0,
+      "max": 100,
+      "unit": "%"
+    }
+  ],
+  "items": [
+    {
+      "id": 0,
+      "name_canonical": "item-0",
+      "name": "Item",
+      "type": 0,
+      "type_name": "type",
+      "picto": "picto-1",
+      "cl": "picto-cl1",
+      "odr": 0,
+      "infos": "Texte explicatif de l'item",
+      "vals": [
+        {
+          "desc": "description valeur 1",
+          "val": "+10",
+          "unit": "%",
+          "criteria": 0
+        },
+        {
+          "desc": "description valeur 1",
+          "val": "+10",
+          "unit": "%",
+          "criteria": 1
+        }
+      ]
+    }
+  ]
+}

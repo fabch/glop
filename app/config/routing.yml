@@ -1,0 +1,17 @@
+
+NelmioApiDocBundle:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:   /api/doc
+tasks:
+    resource: "@AppBundle/Controller/TaskController.php"
+    type:     rest
+    prefix: /api
+garden:
+    resource: "@GardenBundle/Controller/GardenController.php"
+    type:     rest
+    prefix:   /api
+fallback:
+    pattern: /{url}
+    defaults: { _controller: AppBundle:Default:index, url: null }
+    requirements:
+        url: .*

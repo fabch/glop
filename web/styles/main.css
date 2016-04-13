@@ -1,0 +1,261 @@
+
+html {
+    height:100%;
+}
+body {
+    height:100%;
+    font-size:12px;
+    background:#fff;
+    background: url('../images/engie_garden-1200x1000.jpg') no-repeat center top;
+    background-size: contain;
+    padding:0;
+    margin:0;
+    color:#333;
+}
+#app{ height:100%; overflow:hidden; }
+
+#AppWrapper{z-index:1; height:100%; }
+#GardenPointCounter{z-index:2; box-sizing:border-box; padding:2rem; border-bottom:1px solid #ccc;}
+#GardenIndicatorWrapper{z-index:4; box-sizing:border-box; height:100%; float:left; width:16rem; padding:2rem; border-right:1px solid #ccc; }
+#GardenItemSelector{z-index:4; box-sizing:border-box; height:100%; float:right;  width: 21rem; border-left:1px solid #ccc;}
+#GardenField{z-index:3; box-sizing:border-box; padding:2rem; }
+#GardenFoot{ clear:both; }
+
+.gardenPointCounter{
+    font-size:2rem;
+    text-align:right;
+}
+
+.gardenItemSelector{
+    float:left;
+    height:100%;
+    padding:2rem;
+    overflow:scroll;
+}
+.gardenItem{
+    display: block;
+    float: left;
+    position:relative;
+    overflow:hidden;
+    z-index:1;
+    list-style: none outside none;
+    width: 4rem;
+    line-height:4rem;
+    text-align:center;
+    background-color:#ffffff;
+    color:#333333;
+    margin:1rem;
+    cursor:-webkit-grab;
+    border-radius: 0.5rem;
+    padding: 1rem;
+}
+.gardenItem i{
+    display:block;
+    font-size: 4rem;
+    position: absolute;
+    opacity:0.4;
+    color:#fff;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1rem 0;
+    z-index:1;
+}
+.gardenItem.engie-grey{             background-color:#999; }
+.gardenItem.engie-blueLight{        background-color:#44A1DA; }
+.gardenItem.engie-blue{             background-color:#065FA9; }
+.gardenItem.engie-green{            background-color:#BECD07; }
+.gardenItem.engie-green{            background-color:#68AF2E; }
+.gardenItem.engie-greenDark{        background-color:#018737; }
+.gardenItem.engie-yellow{           background-color:#FCC206; }
+.gardenItem.engie-red{              background-color:#E1071A; }
+.gardenItem.engie-purple{           background-color:#53257F; }
+.gardenItem.engie-pink{             background-color:#E62E87; }
+
+
+.gardenItem h3{
+    z-index:2;
+    display: block;
+    margin: 0;
+    position: relative;
+}
+.gardenItem small{
+    position:absolute;
+    z-index:4;
+    top:0;
+    right:0;
+    border-bottom-left-radius: 0.3rem;
+    border-left:#fff 1px solid;
+    border-bottom:#fff 1px solid;
+    color:#ffffff;
+    line-height:normal;
+    padding:0.3rem;
+}
+
+.gardenItem.disabled{
+    background:#292929;
+    color:#ffffff;
+    cursor:pointer;
+    overflow:hidden;
+}
+.gardenItem.disabled i{
+    cursor:pointer;
+    overflow:hidden;
+}
+.gardenItem.disabled h3{
+    opacity:0;
+}
+.gardenItem.disabled small{
+    color:#FCC206;
+    border-left:#333 1px solid;
+    border-bottom:#333 1px solid;
+}
+
+.gardenField{
+    width: 600px;
+    height:600px;
+    margin:0 auto;
+    position: relative;
+    /*-webkit-perspective: 600px; /!* Chrome, Safari, Opera  *!/*/
+    /*perspective: 600px;*/
+}
+
+.gardenTable{
+    width: 100%;
+    height:100%;
+    /*background:#FF0000;*/
+    position: absolute;
+    /*-webkit-transform: rotateX(70deg); /!* Chrome, Safari, Opera  *!/*/
+    /*transform: rotateX(70deg);*/
+}
+
+.gardenTile{
+    width:20%;
+    height:20%;
+    float:left;
+    box-sizing:border-box;
+    /*background:#FF0000;
+    border:1px solid #FFFFFF;*/
+}
+
+.drop-active {
+    background-color: rgba(0,0,0,0.5);
+    border:1px solid #000;
+    opacity:0.3;
+}
+
+.drop-target {
+    background-color: #29e;
+    border-color: #065FA9;
+}
+
+.drag-drop {
+    display: inline-block;
+    min-width: 40px;
+    padding: 2em 0.5em;
+
+    color: #fff;
+    background-color: #29e;
+    border: solid 2px #fff;
+
+    -webkit-transform: translate(0px, 0px);
+    transform: translate(0px, 0px);
+
+    transition: background-color 0.3s;
+}
+
+.drag-drop.can-drop {
+    color: #000;
+    background-color: #ee8a37;
+}
+
+/*************************/
+
+.hi-icon-effect-6 .hi-icon {
+    box-shadow: 0 0 0 4px rgba(255,255,255,1);
+    transition: background 0.2s, color 0.2s;
+}
+
+.no-touch .hi-icon-effect-6 .hi-icon:hover {
+    background: rgba(255,255,255,1);
+    color: #64bb5d;
+}
+
+.no-touch .hi-icon-effect-6 .hi-icon:hover:before {
+    animation: spinAround 2s linear infinite;
+}
+
+/*************************/
+
+@keyframes spinAround {
+    from {
+        transform: rotate(0deg)
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.sk-cube-grid {
+    width: 40px;
+    height: 40px;
+    margin: 100px auto;
+}
+
+.sk-cube-grid .sk-cube {
+    width: 33%;
+    height: 33%;
+    background-color: #333;
+    float: left;
+    -webkit-animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out;
+    animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out;
+}
+.sk-cube-grid .sk-cube1 {
+    -webkit-animation-delay: 0.2s;
+    animation-delay: 0.2s; }
+.sk-cube-grid .sk-cube2 {
+    -webkit-animation-delay: 0.3s;
+    animation-delay: 0.3s; }
+.sk-cube-grid .sk-cube3 {
+    -webkit-animation-delay: 0.4s;
+    animation-delay: 0.4s; }
+.sk-cube-grid .sk-cube4 {
+    -webkit-animation-delay: 0.1s;
+    animation-delay: 0.1s; }
+.sk-cube-grid .sk-cube5 {
+    -webkit-animation-delay: 0.2s;
+    animation-delay: 0.2s; }
+.sk-cube-grid .sk-cube6 {
+    -webkit-animation-delay: 0.3s;
+    animation-delay: 0.3s; }
+.sk-cube-grid .sk-cube7 {
+    -webkit-animation-delay: 0s;
+    animation-delay: 0s; }
+.sk-cube-grid .sk-cube8 {
+    -webkit-animation-delay: 0.1s;
+    animation-delay: 0.1s; }
+.sk-cube-grid .sk-cube9 {
+    -webkit-animation-delay: 0.2s;
+    animation-delay: 0.2s; }
+
+@-webkit-keyframes sk-cubeGridScaleDelay {
+    0%, 70%, 100% {
+        -webkit-transform: scale3D(1, 1, 1);
+        transform: scale3D(1, 1, 1);
+    } 35% {
+          -webkit-transform: scale3D(0, 0, 1);
+          transform: scale3D(0, 0, 1);
+      }
+}
+
+@keyframes sk-cubeGridScaleDelay {
+    0%, 70%, 100% {
+        -webkit-transform: scale3D(1, 1, 1);
+        transform: scale3D(1, 1, 1);
+    } 35% {
+          -webkit-transform: scale3D(0, 0, 1);
+          transform: scale3D(0, 0, 1);
+      }
+}
+
+/*************************/

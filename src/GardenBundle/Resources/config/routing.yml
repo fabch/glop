@@ -1,0 +1,4 @@
+garden:
+    resource: "@AppBundle/Controller/GardenController.php"
+    type:     rest
+    prefix: /api
