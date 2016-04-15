@@ -1,4 +1,4 @@
-**/.DS_Store
+.DS_Store
 .idea/**
 /npm-debug.log
 /bower_components
@@ -13,6 +13,5 @@
 !app/logs/.gitkeep
 /app/phpunit.xml
 /build/
-
 /bin/
 /composer.phar
