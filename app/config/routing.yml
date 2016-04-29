@@ -5,13 +5,16 @@ NelmioApiDocBundle:
 tasks:
     resource: "@AppBundle/Controller/TaskController.php"
     type:     rest
-    prefix: /api
+    prefix:   /api
 garden:
     resource: "@GardenBundle/Controller/GardenController.php"
     type:     rest
     prefix:   /api
+index:
+    pattern:  /index
+    defaults: { _controller: AppBundle:Default:index }
 fallback:
-    pattern: /{url}
-    defaults: { _controller: AppBundle:Default:index, url: null }
+    pattern:  /app/{url}
+    defaults: { _controller: AppBundle:Default:app, url: null }
     requirements:
         url: .*

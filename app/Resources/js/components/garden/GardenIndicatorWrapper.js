@@ -1,10 +1,25 @@
 var React = require('react'),
     ReactDOM = require('react-dom');
 
+var _ = require('underscore');
+
 var GardenStore       = require('../../stores/GardenStore');
 var Preloader         = require('../utils/Preloader');
+var AnimationMixin = require('../../mixins/AnimationMixin');
+var RootPathMixin = require('../../mixins/RootPathMixin');
 
 var GardenIndicator = React.createClass({
+
+    mixins :[ AnimationMixin, RootPathMixin ],
+
+    statics: {
+        getMeterLevel: function(indicator) {
+            console.log((indicator.max - indicator.min) * (indicator.val - indicator.min) /100);
+            return (indicator.max - indicator.min) * (indicator.val - indicator.min) / 100;
+        }
+    },
+
+    meterLevel : 0,
 
     getInitialState: function() {
         return {
@@ -13,20 +28,12 @@ var GardenIndicator = React.createClass({
     },
 
     componentDidMount() {
-        var node = ReactDOM.findDOMNode(this);
-        node.classList.add('animated','fadeInUp');
-        node.style.animationDelay = this.props.index/10 + 's';
-        node.addEventListener("webkitTransitionEnd", this.endAnimation);
+        this.addAnimationStyle(ReactDOM.findDOMNode(this), ['animated','rubberBand'], 0, 1000);
     },
 
-
-    endAnimation:function(e){
-        e.target.classList.remove('pulse','fadeInUp');
-        e.target.style.animationDelay = 'initial';
-    },
-
-    componentDidUpdate: function (prevProps) {
-        if (!prevProps.indicator && this.props.indicator) {
+    componentDidUpdate: function (prevProps, prevState) {
+        if (this.state.indicator.val - prevState.indicator.val) {
+            this.addAnimationStyle(ReactDOM.findDOMNode(this), ['animated','rubberBand'], 0, 1000);
         }
     },
 
@@ -34,16 +41,25 @@ var GardenIndicator = React.createClass({
         if (!this.props.indicator) {
             return ( <Preloader /> );
         }
-
+        var meterLevel = Math.round(((this.props.indicator.val - this.props.indicator.min) * 100) / (this.props.indicator.max - this.props.indicator.min));
+        var text = this.props.indicator.name + '-' + meterLevel +'%';
         return (
-            <div className="gardenIndicator">
-                {this.props.indicator.name}
+            <div className={'gardenIndicator '  + this.props.indicator.cl}>
+                {this.props.odr}
+                <span className={'gardenIndicatorPicto'} >
+                    <img src={this.rootPath + 'images/pictos/' + this.props.indicator.picto } />
+                </span>
+                <div className={'meter animate '}>
+                    <span style={{width: meterLevel + '%'}}><span></span></span>
+                </div>
             </div>
         );
     }
 });
 
 var GardenIndicatorWrapper = React.createClass({
+
+    mixins :[ RootPathMixin ],
 
     getInitialState: function() {
         return {
@@ -67,11 +83,31 @@ var GardenIndicatorWrapper = React.createClass({
 
         return (
             <div className="gardenIndicatorWrapper">
-                {this.props.gardenIndicators.map((gardenIndicator, index) => {
+                <img src={this.rootPath + 'images/LOGO_CHALLENGIEGARDEN_RVB.png'} alt="" height="60px" />
+                <div className="gardenColorBar">
+                    <div className="colorBar">
+                        <div className="bgEngiePink"></div>
+                        <div className="bgEngieYellow"></div>
+                        <div className="bgEngieBlueLight"></div>
+                        <div className="bgEngieGreenLight"></div>
+                        <div className="bgEngieGreen"></div>
+                        <div className="bgEngieGreenDark"></div>
+                        <div className="bgEngieBlue"></div>
+                        <div className="bgEngieGreenDark2"></div>
+                        <div className="bgEngieRed"></div>
+                        <div className="bgEngiePurple"></div>
+                    </div>
+                </div>
+
+                <p style={{fontSize:'1.2rem'}}>
+                    <span style={{float:'right'}}>400 <i className="ion-battery-charging"></i></span>
+                    <i className={'ion-happy'}></i> Martin J.
+                </p>
+                {_.map(this.props.gardenIndicators, (gardenIndicator, key) => {
                     return (
                         <GardenIndicator
-                            key={gardenIndicator.id}
-                            index={index}
+                            key={key}
+                            odr={key}
                             indicator={gardenIndicator}
                             />
                     );

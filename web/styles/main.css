@@ -1,261 +1,565 @@
+.bgEngieWhite {
+  background-color: #fff; }
 
+.bgEngieGrey {
+  background-color: #999; }
+
+.bgEngieBlueLight {
+  background-color: #44A1DA; }
+
+.bgEngieBlue {
+  background-color: #065FA9; }
+
+.bgEngieGreenLight {
+  background-color: #BECD07; }
+
+.bgEngieGreen {
+  background-color: #68AF2E; }
+
+.bgEngieGreenDark {
+  background-color: #018737; }
+
+.bgEngieYellow {
+  background-color: #FCC206; }
+
+.bgEngieRed {
+  background-color: #E1071A; }
+
+.bgEngiePurple {
+  background-color: #53257F; }
+
+.bgEngiePink {
+  background-color: #E62E87; }
+
+.txtEngieWhite {
+  color: #fff; }
+
+.txtEngieGrey {
+  color: #999; }
+
+.txtEngieBlueLight {
+  color: #44A1DA; }
+
+.txtEngieBlue {
+  color: #065FA9; }
+
+.txtEngieGreenLight {
+  color: #BECD07; }
+
+.txtEngieGreen {
+  color: #68AF2E; }
+
+.txtEngieGreenDark {
+  color: #018737; }
+
+.txtEngieYellow {
+  color: #FCC206; }
+
+.txtEngieRed {
+  color: #E1071A; }
+
+.txtEngiePurple {
+  color: #53257F; }
+
+.txtEngiePink {
+  color: #E62E87; }
+
+/****************************************************************************/
+/*
+/*          PARAMS
+/*
+/****************************************************************************/
+/****************************************************************************/
+/*
+/*          INIT
+/*
+/****************************************************************************/
 html {
-    height:100%;
-}
+  height: 100%; }
+
 body {
-    height:100%;
-    font-size:12px;
-    background:#fff;
-    background: url('../images/engie_garden-1200x1000.jpg') no-repeat center top;
-    background-size: contain;
-    padding:0;
-    margin:0;
-    color:#333;
-}
-#app{ height:100%; overflow:hidden; }
+  height: 100%;
+  font-size: 12px;
+  background: #fff;
+  background: url("../images/engie_garden-1800x1000.jpg") no-repeat center top;
+  background-attachment: fixed;
+  background-size: cover;
+  padding: 0;
+  margin: 0;
+  color: #333; }
 
-#AppWrapper{z-index:1; height:100%; }
-#GardenPointCounter{z-index:2; box-sizing:border-box; padding:2rem; border-bottom:1px solid #ccc;}
-#GardenIndicatorWrapper{z-index:4; box-sizing:border-box; height:100%; float:left; width:16rem; padding:2rem; border-right:1px solid #ccc; }
-#GardenItemSelector{z-index:4; box-sizing:border-box; height:100%; float:right;  width: 21rem; border-left:1px solid #ccc;}
-#GardenField{z-index:3; box-sizing:border-box; padding:2rem; }
-#GardenFoot{ clear:both; }
+#app {
+  height: 100%; }
 
-.gardenPointCounter{
-    font-size:2rem;
-    text-align:right;
-}
+#AppWrapper {
+  z-index: 1;
+  height: 100%; }
+  #AppWrapper #GardenPointCounterWrapper {
+    z-index: 5;
+    position: fixed;
+    box-sizing: border-box;
+    top: 0;
+    height: 6rem;
+    width: 100%;
+    padding: 2rem 2rem 2rem 20rem;
+    background: url("../images/engie_garden-1800x1000.jpg") no-repeat center top;
+    background-attachment: fixed;
+    background-size: cover; }
+  #AppWrapper #GardenIndicatorWrapper {
+    z-index: 6;
+    position: fixed;
+    box-sizing: border-box;
+    top: 0;
+    width: 18rem;
+    padding: 2rem; }
+  #AppWrapper #GardenItemSelectorWrapper {
+    z-index: 4;
+    position: relative;
+    box-sizing: border-box;
+    float: right;
+    padding: 8rem 2rem 2rem;
+    width: 18rem; }
+  #AppWrapper #GardenItemDescWrapper {
+    z-index: 4;
+    position: fixed;
+    box-sizing: border-box;
+    bottom: 0;
+    padding: 2rem;
+    width: 18rem; }
+  #AppWrapper #GardenFieldWrapper {
+    z-index: 3;
+    position: fixed;
+    box-sizing: border-box;
+    bottom: 2rem;
+    width: 100%;
+    padding: 2rem; }
 
-.gardenItemSelector{
-    float:left;
-    height:100%;
-    padding:2rem;
-    overflow:scroll;
-}
-.gardenItem{
+/****************************************************************************/
+/*
+/*          POINT COUNTER
+/*
+/****************************************************************************/
+.gardenPointCounter {
+  font-size: 2rem;
+  text-align: center; }
+  .gardenPointCounter .topRight {
     display: block;
-    float: left;
-    position:relative;
-    overflow:hidden;
-    z-index:1;
-    list-style: none outside none;
-    width: 4rem;
-    line-height:4rem;
-    text-align:center;
-    background-color:#ffffff;
-    color:#333333;
-    margin:1rem;
-    cursor:-webkit-grab;
-    border-radius: 0.5rem;
-    padding: 1rem;
-}
-.gardenItem i{
-    display:block;
+    float: right;
+    width: 16rem; }
+  .gardenPointCounter .topCenter {
+    display: block;
+    text-align: center; }
+
+/****************************************************************************/
+/*
+/*          ITEMS DESC
+/*
+/****************************************************************************/
+.gardenItemDesc {
+  z-index: 5;
+  background: rgba(0, 0, 0, 0.3);
+  color: #ffffff;
+  padding: 2rem; }
+  .gardenItemDesc .gardenItemDescContent > img {
+    max-width: 30%;
+    float: right; }
+  .gardenItemDesc h3 {
+    text-transform: uppercase;
+    margin-top: 0; }
+  .gardenItemDesc ul {
+    display: block;
+    padding: 0;
+    text-align: center; }
+    .gardenItemDesc ul img {
+      float: none;
+      display: inline-block;
+      height: 1.2em;
+      vertical-align: bottom;
+      margin-right: 0.2em; }
+    .gardenItemDesc ul li {
+      display: inline-block;
+      border-radius: 2rem;
+      padding: 0.2rem 0.5rem;
+      margin: 0.2rem;
+      text-align: center;
+      font-weight: bold; }
+      .gardenItemDesc ul li.engieWhite {
+        color: #fff;
+        background-color: #fff; }
+      .gardenItemDesc ul li.engieGrey {
+        color: #fff;
+        background-color: #999; }
+      .gardenItemDesc ul li.engieBlueLight {
+        color: #fff;
+        background-color: #44A1DA; }
+      .gardenItemDesc ul li.engieBlue {
+        color: #fff;
+        background-color: #065FA9; }
+      .gardenItemDesc ul li.engieGreenLight {
+        color: #fff;
+        background-color: #BECD07; }
+      .gardenItemDesc ul li.engieGreen {
+        color: #fff;
+        background-color: #68AF2E; }
+      .gardenItemDesc ul li.engieGreenDark {
+        color: #fff;
+        background-color: #018737; }
+      .gardenItemDesc ul li.engieYellow {
+        color: #fff;
+        background-color: #FCC206; }
+      .gardenItemDesc ul li.engieRed {
+        color: #fff;
+        background-color: #E1071A; }
+      .gardenItemDesc ul li.engiePurple {
+        color: #fff;
+        background-color: #53257F; }
+      .gardenItemDesc ul li.engiePink {
+        color: #fff;
+        background-color: #E62E87; }
+
+/****************************************************************************/
+/*
+/*         ITEMS SELECTOR
+/*
+/****************************************************************************/
+.gardenItemSelector {
+  z-index: 4;
+  float: left;
+  height: 100%; }
+
+.gardenItem {
+  display: block;
+  float: left;
+  position: relative;
+  overflow: hidden;
+  z-index: 4;
+  list-style: none outside none;
+  width: 4rem;
+  line-height: 4rem;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.3);
+  color: #ffffff;
+  margin: 1rem;
+  cursor: -webkit-grab;
+  border-radius: 4rem;
+  padding: 0.5rem; }
+  .gardenItem:focus {
+    box-shadow: 0px 0px 10px 0px #f8ff00;
+    outline: 0; }
+  .gardenItem i {
+    display: block;
     font-size: 4rem;
     position: absolute;
-    opacity:0.4;
-    color:#fff;
+    opacity: 0.4;
+    color: #fff;
     top: 0;
     left: 0;
     width: 100%;
     padding: 1rem 0;
-    z-index:1;
-}
-.gardenItem.engie-grey{             background-color:#999; }
-.gardenItem.engie-blueLight{        background-color:#44A1DA; }
-.gardenItem.engie-blue{             background-color:#065FA9; }
-.gardenItem.engie-green{            background-color:#BECD07; }
-.gardenItem.engie-green{            background-color:#68AF2E; }
-.gardenItem.engie-greenDark{        background-color:#018737; }
-.gardenItem.engie-yellow{           background-color:#FCC206; }
-.gardenItem.engie-red{              background-color:#E1071A; }
-.gardenItem.engie-purple{           background-color:#53257F; }
-.gardenItem.engie-pink{             background-color:#E62E87; }
-
-
-.gardenItem h3{
-    z-index:2;
+    z-index: 1; }
+  .gardenItem h3 {
+    z-index: 2;
     display: block;
     margin: 0;
     position: relative;
-}
-.gardenItem small{
-    position:absolute;
-    z-index:4;
-    top:0;
-    right:0;
-    border-bottom-left-radius: 0.3rem;
-    border-left:#fff 1px solid;
-    border-bottom:#fff 1px solid;
-    color:#ffffff;
-    line-height:normal;
-    padding:0.3rem;
-}
-
-.gardenItem.disabled{
-    background:#292929;
-    color:#ffffff;
-    cursor:pointer;
-    overflow:hidden;
-}
-.gardenItem.disabled i{
-    cursor:pointer;
-    overflow:hidden;
-}
-.gardenItem.disabled h3{
-    opacity:0;
-}
-.gardenItem.disabled small{
-    color:#FCC206;
-    border-left:#333 1px solid;
-    border-bottom:#333 1px solid;
-}
-
-.gardenField{
-    width: 600px;
-    height:600px;
-    margin:0 auto;
-    position: relative;
-    /*-webkit-perspective: 600px; /!* Chrome, Safari, Opera  *!/*/
-    /*perspective: 600px;*/
-}
-
-.gardenTable{
-    width: 100%;
-    height:100%;
-    /*background:#FF0000;*/
+    height: 4rem;
+    font-size: 3rem; }
+  .gardenItem small {
     position: absolute;
-    /*-webkit-transform: rotateX(70deg); /!* Chrome, Safari, Opera  *!/*/
-    /*transform: rotateX(70deg);*/
-}
+    z-index: 4;
+    bottom: -1.3rem;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 2rem;
+    margin-left: -1.3rem;
+    background: rgba(0, 0, 0, 0.3);
+    border: #fff 1px solid;
+    color: #ffffff;
+    line-height: normal;
+    padding: 0.3rem; }
+  .gardenItem img {
+    position: absolute;
+    left: 5%;
+    top: 5%;
+    width: 90%;
+    height: 90%; }
+    .gardenItem img path, .gardenItem img ellipse, .gardenItem img polyline, .gardenItem img polygon, .gardenItem img circle, .gardenItem img rect, .gardenItem img line {
+      stroke: #FFFFFF;
+      fill: #FFFFFF; }
+  .gardenItem.disabled {
+    background: contrast(rgba(0, 0, 0, 0.3));
+    color: contrast(#ffffff);
+    cursor: pointer;
+    overflow: hidden; }
+    .gardenItem.disabled i {
+      cursor: pointer;
+      overflow: hidden; }
+    .gardenItem.disabled small {
+      color: #FCC206;
+      border: #333 1px solid; }
+    .gardenItem.disabled img {
+      opacity: 0.3; }
 
-.gardenTile{
-    width:20%;
-    height:20%;
-    float:left;
-    box-sizing:border-box;
-    /*background:#FF0000;
-    border:1px solid #FFFFFF;*/
-}
+/****************************************************************************/
+/*
+/*         FIELD
+/*
+/****************************************************************************/
+.gardenField {
+  width: 26rem;
+  height: 26rem;
+  position: relative;
+  margin: 0 auto; }
 
-.drop-active {
-    background-color: rgba(0,0,0,0.5);
-    border:1px solid #000;
-    opacity:0.3;
-}
+.gardenTable {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  border: 1px dashed #6B9B2E; }
 
-.drop-target {
-    background-color: #29e;
-    border-color: #065FA9;
-}
+.gardenTile {
+  width: 20%;
+  height: 20%;
+  float: left;
+  box-sizing: border-box;
+  position: relative;
+  /*border:1px dashed #6B9B2E;*/ }
+  .gardenTile .gardenTileItem {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 100%; }
 
-.drag-drop {
-    display: inline-block;
-    min-width: 40px;
-    padding: 2em 0.5em;
+/****************************************************************************/
+/*
+/*         INDICATORS
+/*
+/****************************************************************************/
+.gardenIndicatorWrapper {
+  font-size: 1rem;
+  text-transform: uppercase;
+  background: rgba(0, 0, 0, 0.3);
+  color: #ffffff;
+  padding: 1rem; }
+  .gardenIndicatorWrapper img {
+    margin: 0 auto;
+    display: block;
+    margin-bottom: 2rem; }
+  .gardenIndicatorWrapper .gardenColorBar {
+    margin-bottom: 2rem; }
 
-    color: #fff;
-    background-color: #29e;
-    border: solid 2px #fff;
+.gardenIndicator {
+  margin-bottom: 1.5rem;
+  font-size: 12px;
+  position: relative; }
+  .gardenIndicator .meter {
+    position: relative;
+    background: rgba(255, 255, 255, 0.3);
+    height: 0.8em;
+    padding: 0;
+    margin: 1em 0 0 1.9em;
+    border-radius: 0 0.4em 0.4em 0; }
+  .gardenIndicator .meter > span {
+    display: block;
+    height: 100%;
+    border-radius: 0 0.4em 0.4em 0;
+    box-shadow: inset 0 2px 9px rgba(255, 255, 255, 0.2), inset 0 -2px 6px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+    transition: width 0.5s; }
+  .gardenIndicator .gardenIndicatorPicto {
+    z-index: 6;
+    position: absolute;
+    left: 0;
+    top: -0.5em;
+    font-size: 1.2em;
+    background-color: #fff;
+    padding: 0.2em;
+    line-height: 1.2em;
+    width: 1.2em;
+    border-radius: 50%;
+    text-align: center;
+    border: 1px solid #000; }
+    .gardenIndicator .gardenIndicatorPicto img {
+      height: 1.2em;
+      margin: 0; }
+  .gardenIndicator.engieWhite {
+    color: #fff; }
+    .gardenIndicator.engieWhite .gardenIndicatorPicto {
+      border-color: #fff; }
+    .gardenIndicator.engieWhite .meter > span {
+      background-color: #fff; }
+  .gardenIndicator.engieGrey {
+    color: #999; }
+    .gardenIndicator.engieGrey .gardenIndicatorPicto {
+      border-color: #999; }
+    .gardenIndicator.engieGrey .meter > span {
+      background-color: #999; }
+  .gardenIndicator.engieBlueLight {
+    color: #44A1DA; }
+    .gardenIndicator.engieBlueLight .gardenIndicatorPicto {
+      border-color: #44A1DA; }
+    .gardenIndicator.engieBlueLight .meter > span {
+      background-color: #44A1DA; }
+  .gardenIndicator.engieBlue {
+    color: #065FA9; }
+    .gardenIndicator.engieBlue .gardenIndicatorPicto {
+      border-color: #065FA9; }
+    .gardenIndicator.engieBlue .meter > span {
+      background-color: #065FA9; }
+  .gardenIndicator.engieGreenLight {
+    color: #BECD07; }
+    .gardenIndicator.engieGreenLight .gardenIndicatorPicto {
+      border-color: #BECD07; }
+    .gardenIndicator.engieGreenLight .meter > span {
+      background-color: #BECD07; }
+  .gardenIndicator.engieGreen {
+    color: #68AF2E; }
+    .gardenIndicator.engieGreen .gardenIndicatorPicto {
+      border-color: #68AF2E; }
+    .gardenIndicator.engieGreen .meter > span {
+      background-color: #68AF2E; }
+  .gardenIndicator.engieGreenDark {
+    color: #018737; }
+    .gardenIndicator.engieGreenDark .gardenIndicatorPicto {
+      border-color: #018737; }
+    .gardenIndicator.engieGreenDark .meter > span {
+      background-color: #018737; }
+  .gardenIndicator.engieYellow {
+    color: #FCC206; }
+    .gardenIndicator.engieYellow .gardenIndicatorPicto {
+      border-color: #FCC206; }
+    .gardenIndicator.engieYellow .meter > span {
+      background-color: #FCC206; }
+  .gardenIndicator.engieRed {
+    color: #E1071A; }
+    .gardenIndicator.engieRed .gardenIndicatorPicto {
+      border-color: #E1071A; }
+    .gardenIndicator.engieRed .meter > span {
+      background-color: #E1071A; }
+  .gardenIndicator.engiePurple {
+    color: #53257F; }
+    .gardenIndicator.engiePurple .gardenIndicatorPicto {
+      border-color: #53257F; }
+    .gardenIndicator.engiePurple .meter > span {
+      background-color: #53257F; }
+  .gardenIndicator.engiePink {
+    color: #E62E87; }
+    .gardenIndicator.engiePink .gardenIndicatorPicto {
+      border-color: #E62E87; }
+    .gardenIndicator.engiePink .meter > span {
+      background-color: #E62E87; }
 
-    -webkit-transform: translate(0px, 0px);
-    transform: translate(0px, 0px);
-
-    transition: background-color 0.3s;
-}
-
-.drag-drop.can-drop {
-    color: #000;
-    background-color: #ee8a37;
-}
-
-/*************************/
-
-.hi-icon-effect-6 .hi-icon {
-    box-shadow: 0 0 0 4px rgba(255,255,255,1);
-    transition: background 0.2s, color 0.2s;
-}
-
-.no-touch .hi-icon-effect-6 .hi-icon:hover {
-    background: rgba(255,255,255,1);
-    color: #64bb5d;
-}
-
-.no-touch .hi-icon-effect-6 .hi-icon:hover:before {
-    animation: spinAround 2s linear infinite;
-}
-
-/*************************/
-
+/****************************************************************************/
+/*
+/*          PRELOADER
+/*
+/****************************************************************************/
 @keyframes spinAround {
-    from {
-        transform: rotate(0deg)
-    }
-    to {
-        transform: rotate(360deg);
-    }
-}
-
+  from {
+    transform: rotate(0deg); }
+  to {
+    transform: rotate(360deg); } }
 .sk-cube-grid {
-    width: 40px;
-    height: 40px;
-    margin: 100px auto;
-}
-
-.sk-cube-grid .sk-cube {
+  width: 40px;
+  height: 40px;
+  margin: 100px auto; }
+  .sk-cube-grid .sk-cube {
     width: 33%;
     height: 33%;
-    background-color: #333;
     float: left;
-    -webkit-animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out;
     animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out;
-}
-.sk-cube-grid .sk-cube1 {
-    -webkit-animation-delay: 0.2s;
+    border-radius: 50%; }
+  .sk-cube-grid .sk-cube1 {
     animation-delay: 0.2s; }
-.sk-cube-grid .sk-cube2 {
-    -webkit-animation-delay: 0.3s;
+  .sk-cube-grid .sk-cube2 {
     animation-delay: 0.3s; }
-.sk-cube-grid .sk-cube3 {
-    -webkit-animation-delay: 0.4s;
+  .sk-cube-grid .sk-cube3 {
     animation-delay: 0.4s; }
-.sk-cube-grid .sk-cube4 {
-    -webkit-animation-delay: 0.1s;
+  .sk-cube-grid .sk-cube4 {
     animation-delay: 0.1s; }
-.sk-cube-grid .sk-cube5 {
-    -webkit-animation-delay: 0.2s;
+  .sk-cube-grid .sk-cube5 {
     animation-delay: 0.2s; }
-.sk-cube-grid .sk-cube6 {
-    -webkit-animation-delay: 0.3s;
+  .sk-cube-grid .sk-cube6 {
     animation-delay: 0.3s; }
-.sk-cube-grid .sk-cube7 {
-    -webkit-animation-delay: 0s;
+  .sk-cube-grid .sk-cube7 {
     animation-delay: 0s; }
-.sk-cube-grid .sk-cube8 {
-    -webkit-animation-delay: 0.1s;
+  .sk-cube-grid .sk-cube8 {
     animation-delay: 0.1s; }
-.sk-cube-grid .sk-cube9 {
-    -webkit-animation-delay: 0.2s;
+  .sk-cube-grid .sk-cube9 {
     animation-delay: 0.2s; }
-
-@-webkit-keyframes sk-cubeGridScaleDelay {
-    0%, 70%, 100% {
-        -webkit-transform: scale3D(1, 1, 1);
-        transform: scale3D(1, 1, 1);
-    } 35% {
-          -webkit-transform: scale3D(0, 0, 1);
-          transform: scale3D(0, 0, 1);
-      }
-}
 
 @keyframes sk-cubeGridScaleDelay {
-    0%, 70%, 100% {
-        -webkit-transform: scale3D(1, 1, 1);
-        transform: scale3D(1, 1, 1);
-    } 35% {
-          -webkit-transform: scale3D(0, 0, 1);
-          transform: scale3D(0, 0, 1);
-      }
-}
+  0%, 70%, 100% {
+    transform: scale3D(1, 1, 1); }
+  35% {
+    transform: scale3D(0, 0, 1); } }
+/****************************************************************************/
+/*
+/*          COLOR BAR
+/*
+/****************************************************************************/
+.colorBar {
+  height: 0.2rem;
+  position: relative; }
+  .colorBar > div {
+    display: block;
+    position: absolute;
+    top: 0;
+    height: 100%;
+    border-radius: 6px; }
+    .colorBar > div.bgEngiePink {
+      left: 66%;
+      width: 34%; }
+    .colorBar > div.bgEngieYellow {
+      left: 50%;
+      width: 16%; }
+    .colorBar > div.bgEngieBlueLight {
+      left: 32%;
+      width: 18%; }
+    .colorBar > div.bgEngieGreenLight {
+      left: 10%;
+      width: 22%; }
+    .colorBar > div.bgEngieGreen {
+      left: 0;
+      width: 10%; }
+    .colorBar > div.bgEngieGreenDark {
+      left: 6.5%;
+      width: 6.5%; }
+    .colorBar > div.bgEngieBlue {
+      left: 27%;
+      width: 9%; }
+    .colorBar > div.bgEngieGreenDark2 {
+      left: 46.3%;
+      width: 8.2%;
+      background: #018737; }
+    .colorBar > div.bgEngieRed {
+      left: 61.5%;
+      width: 9.8%; }
+    .colorBar > div.bgEngiePurple {
+      left: 77.5%;
+      width: 8%; }
 
-/*************************/
+.gardenColorBar {
+  width: 100%;
+  margin: 0.5rem 0; }
+
+/****************************************************************************/
+/*
+/*         DRAG & DROP
+/*
+/****************************************************************************/
+.dropActive {
+  background-color: rgba(0, 0, 0, 0.3);
+  border-left: 1px dashed #000;
+  border-bottom: 1px dashed #000;
+  opacity: 0.3; }
+
+.dropTarget {
+  background-color: transparent; }
+
+.dropActive.canDrop {
+  background-color: #ee8a37; }
+
+/*# sourceMappingURL=main.css.map */

@@ -1,0 +1,22 @@
+@function suffix-camel-case($string){
+  $firstL : str-slice($string, 0, 1);
+  $restL : str-slice($string, 2, str-length($string));
+  $firstL : to-upper-case($firstL);
+  @return #{$firstL}#{$restL};
+}
+
+@mixin decline-prop($pre, $prop, $list){
+  @each $name, $color in $list {
+    $name : suffix-camel-case($name);
+    #{$pre}#{$name} {
+      #{$prop}: $color;
+    }
+  }
+}
+
+@mixin decline-class($list){
+  @each $name, $color in $list {
+    &.#{$name}{
+    }
+  }
+}

@@ -1,0 +1,51 @@
+
+// ............................................................
+// .for
+
+.for(@i, @n) {.-each(@i)}
+.for(@n)     when (isnumber(@n)) {.for(1, @n)}
+.for(@i, @n) when not (@i = @n)  {
+  .for((@i + (@n - @i) / abs(@n - @i)), @n);
+}
+
+// ............................................................
+// .for-each
+
+.for(@array)   when (default()) {.for-impl_(length(@array))}
+.for-impl_(@i) when (@i > 1)    {.for-impl_((@i - 1))}
+.for-impl_(@i) when (@i > 0)    {.-each(extract(@array, @i))}
+
+// ............................................................
+// .decline-class
+
+.decline-class(@classSuffixList; @colors; @mixin){
+  .for(@classSuffixList); .-each(@name) {
+
+    @cl: extract(@colors, @i);
+
+    &.@{name} {
+      @mixin();
+    }
+  }
+}
+
+// ............................................................
+// .property-variation
+.property-variation(@pre; @property; @names; @colors; @index) when (iscolor(extract(@colors, @index))) and (@index > 0) {
+  .property-variation(@pre; @property; @names; @colors; (@index - 1)); // decrement.
+
+  @name  : extract(@names, @index);
+  @color : extract(@colors, @index);
+
+  .@{pre}@{name} {
+     @{property}: @color;
+  }
+
+}
+
+// ............................................................
+// .capitalize-it
+
+.capitalize-it(@string) {
+  @cpString: e(`'@{string}'.charAt(0).toUpperCase() + '@{string}'.slice(1)`);
+}

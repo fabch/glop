@@ -1,0 +1,13 @@
+bazinga_faker:
+    seed: 1234
+    orm: doctrine
+    entities:
+        GardenBundle\Entity\GardenItem:
+            number: 8
+            custom_formatters:
+                uid : { method: Uuid }
+                name : { method: word }
+                type : { method: randomDigitNotNull }
+                picto : { method: ionicon }
+                cl : { method: safeColorName }
+                price : { method: randomNumber, parameters: [ 4 ] }

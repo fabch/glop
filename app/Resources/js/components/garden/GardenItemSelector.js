@@ -1,51 +1,15 @@
 var React = require('react'),
     ReactDOM = require('react-dom');
-
+var _ = require('underscore');
 var Preloader         = require('../utils/Preloader');
 var AnimationMixin = require('../../mixins/AnimationMixin');
 
 var GardenItem        = require('./GardenItem');
-var GardenItemActions = require('../../actions/GardenItemActions');
+var GardenActions     = require('../../actions/GardenActions');
 var GardenStore       = require('../../stores/GardenStore');
 var GardenItemStore   = require('../../stores/GardenItemStore');
 
 
-var GardenItemDesc = React.createClass({
-
-    mixins :[ AnimationMixin ],
-
-    shouldComponentUpdate: function (nextProps, nextState) {
-        return this.props.item != nextProps.item;
-    },
-
-    componentDidUpdate: function (prevProps, prevState) {
-        if (prevProps != this.props && this.props.item) {
-            this.addAnimationStyle(ReactDOM.findDOMNode(this), ['animated','fadeInDown'], 0, 1000);
-        }
-    },
-
-    render: function() {
-        if (!this.props.item) {
-            return (
-                <div></div>
-            );
-        }
-        return (
-            <div>
-                <h3>
-                    <i className={this.props.item.picto}></i> {this.props.item.name}</h3>
-                <p>{this.props.item.infos}</p>
-                <ul>
-                    {this.props.item.vals.map((val, index) => {
-                        return (
-                            <li key={'ItemVal' + index} >{val.desc} <span>{val.val + val.unit}</span></li>
-                        );
-                    })}
-                </ul>
-            </div>
-        );
-    }
-});
 
 var GardenItemSelector = React.createClass({
 
@@ -55,7 +19,7 @@ var GardenItemSelector = React.createClass({
 
     componentDidMount() {
         GardenItemStore.listen(this.onChange);
-        GardenItemActions.fetchGardenItems();
+        GardenActions.fetchGardenItems();
     },
 
     componentWillUnmount() {
@@ -64,8 +28,6 @@ var GardenItemSelector = React.createClass({
 
     componentWillUpdate(nextProps, nextState) {
         if(nextState.selectedItem !== this.state.selectedItem){
-            this.props.changeSelectedItem(this.state.selectedItem, nextState.selectedItem);
-
             if(nextState.selectedItem !== null){
                 document.querySelector('.gardenItemSelector').style.marginTop = - document.querySelector('.gardenItemSelector').clientTop;
                 document.querySelector('.gardenItemSelector').style.overflow = 'visible';
@@ -77,8 +39,10 @@ var GardenItemSelector = React.createClass({
     },
 
     componentDidUpdate(prevProps, prevState) {
+
+
         if(this.state.focusedItem !== null){
-            ReactDOM.findDOMNode(this.refs['gardenItem' + this.state.focusedItem.id]).focus();
+            ReactDOM.findDOMNode( this.refs[this.state.focusedItem.name_canonical] ).focus();
         }
     },
 
@@ -87,25 +51,24 @@ var GardenItemSelector = React.createClass({
     },
 
     render: function() {
-
-        if (!this.state.gardenItems.length) {
+        console.log(this.state.gardenItems);
+        if (_.isNull(this.state.gardenItems)) {
             return ( <Preloader /> );
         }
-
         return (
-            <div className="gardenItemSelector">
-                <GardenItemDesc item={this.state.focusedItem} />
-                {this.state.gardenItems.map((gardenItem, index) => {
-                    return (
-                        <GardenItem
-                            key={gardenItem.id}
-                            ref={'gardenItem' + gardenItem.id}
-                            index={index}
-                            item={gardenItem}
-                            points={this.props.points}
-                            />
-                    );
-                })}
+            <div className="gardenItemSelectorWrapper">
+                <div className="gardenItemSelector">
+                    { _.map(this.state.gardenItems, (gardenItem, key) => {
+                        return (
+                            <GardenItem
+                                key={key}
+                                ref={key}
+                                item={gardenItem}
+                                points={this.props.points}
+                                />
+                        );
+                    })}
+                </div>
             </div>
         );
     }

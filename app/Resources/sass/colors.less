@@ -1,0 +1,27 @@
+@import "mixins.less";
+
+@engieWhite: #fff;
+@engieGrey: #999;
+@engieBlueLight: #44A1DA;
+@engieBlue: #065FA9;
+@engieGreenLight: #BECD07;
+@engieGreen: #68AF2E;
+@engieGreenDark: #018737;
+@engieYellow: #FCC206;
+@engieRed: #E1071A;
+@engiePurple: #53257F;
+@engiePink: #E62E87;
+
+@engieColors: @engieWhite, @engieGrey, @engieBlueLight, @engieBlue, @engieGreenLight, @engieGreen, @engieGreenDark, @engieYellow, @engieRed, @engiePurple, @engiePink;
+@engieColorNames: engieWhite, engieGrey, engieBlueLight, engieBlue, engieGreenLight, engieGreen, engieGreenDark, engieYellow, engieRed, engiePurple, engiePink;
+@engieColorNamesCap: EngieWhite, EngieGrey, EngieBlueLight, EngieBlue, EngieGreenLight, EngieGreen, EngieGreenDark, EngieYellow, EngieRed, EngiePurple, EngiePink;
+@engieColorLength: length(@engieColorNames);
+
+@bgBloc: rgba(255,255,255,0.5);
+@txtBloc: #333;
+
+.property-variation(bg; background-color; @engieColorNamesCap; @engieColors; @engieColorLength);
+.property-variation(txt; color; @engieColorNamesCap; @engieColors; @engieColorLength);
+
+//.decline-background-color(@engieColors);
+//.decline-color(@engieColors);

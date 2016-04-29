@@ -19,19 +19,19 @@ var GardenPointCounter = React.createClass({
         if (!prevProps.points && this.props.points) {
             //ReactDOM.findDOMNode(this.refs);
         }
-        var node = ReactDOM.findDOMNode(this);
+        var node = ReactDOM.findDOMNode(this.refs.pointCounter);
         node.classList.add('flash');
         node.addEventListener("webkitAnimationEnd", this.endAnimation);
     },
 
     componentDidMount :function(){
-        var node = ReactDOM.findDOMNode(this);
+        var node = ReactDOM.findDOMNode(this.refs.pointCounter);
         node.classList.add('animated','fadeInDown');
         node.addEventListener("webkitAnimationEnd", this.endAnimation);
     },
 
     componentWillUnmount :function(){
-        var node = ReactDOM.findDOMNode(this);
+        var node = ReactDOM.findDOMNode(this.refs.pointCounter);
         node.removeEventListener("webkitAnimationEnd", this.endAnimation);
     },
 
@@ -42,8 +42,15 @@ var GardenPointCounter = React.createClass({
 
     render() {
         return (
-            <div className="gardenPointCounter">
-                <span><i className="ion-battery-charging"></i> {this.props.points}</span>
+            <div className="gardenPointCounterWrapper">
+                <div className="gardenPointCounter">
+                    <span className="topRight">
+                        <span ref={'pointCounter'} >{this.props.points} <i className="ion-battery-charging"></i></span>
+                    </span>
+                    <span className="topCenter">
+                        <i className={'ion-happy'}></i> Martin J.
+                    </span>
+                </div>
             </div>
         );
     }

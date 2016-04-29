@@ -1,19 +1,23 @@
 var React = require('react'),
     ReactDOM = require('react-dom');
 
-var GardenItemActions = require('../../actions/GardenItemActions');
+var GardenActions = require('../../actions/GardenActions');
 var AnimationMixin = require('../../mixins/AnimationMixin');
+var RootPathMixin = require('../../mixins/RootPathMixin');
+
 var Classie = require('classie');
 var interact = require('interact');
 var update = require('react-addons-update');
 
 var GardenItemContent = React.createClass({
 
+    mixins :[ RootPathMixin ],
+
     render: function() {
         return (
             <span>
-                <i className={this.props.item.picto}></i>
-                <h3>{this.props.item.name}</h3>
+                <img src={this.rootPath + 'images/pictos/' + this.props.item.picto} />
+                <h3 className={ this.props.isActive == false ? 'ion-locked' : '' }></h3>
                 <small>{this.props.item.price}</small>
             </span>
         );
@@ -43,6 +47,7 @@ var GardenItem = React.createClass({
         if (prevState.isActive != this.state.isActive) {
             if(!this.state.isDragged) {
                 this.addAnimationStyle(ReactDOM.findDOMNode(this), ['animated','flipInX'], 0, 1000);
+                this.checkDraggable();
             }
         }
     },
@@ -54,10 +59,15 @@ var GardenItem = React.createClass({
     },
 
     componentDidMount :function(){
-        var that = this;
 
         this.addAnimationStyle(ReactDOM.findDOMNode(this), ['animated','flipInX'], this.props.index * 100, 1000);
-        interact(ReactDOM.findDOMNode(this)).draggable({
+        this.setDraggable();
+    },
+
+    setDraggable : function(){
+
+        var that = this;
+        this.interact = interact(ReactDOM.findDOMNode(this)).draggable({
             // enable inertial throwing
             //inertia: true,
             //restrict: {
@@ -67,56 +77,72 @@ var GardenItem = React.createClass({
             //},
             // enable autoScroll
             //autoScroll: true,
+            enabled:false,
 
             onstart:function(event){
-                GardenItemActions.gardenSelectItem(that.props.item);
+                that.setState({isDragged:true});
+                GardenActions.selectGardenItem(that.props.item);
             },
 
             // call this function on every dragmove event
             onmove: function(event) {
-                var target = event.target,
-                    // keep the dragged position in the data-x/data-y attributes
-                    x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
-                    y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+                var x = (parseFloat(event.target.getAttribute('data-x')) || 0) + event.dx,
+                    y = (parseFloat(event.target.getAttribute('data-y')) || 0) + event.dy;
 
                 // translate the element
-                target.style.width =
-                    target.style.transform =
+                event.target.style.width =
+                    event.target.style.transform =
                         'translate(' + x + 'px, ' + y + 'px)';
 
                 // update the posiion attributes
-                target.setAttribute('data-x', x);
-                target.setAttribute('data-y', y);
+                event.target.setAttribute('data-x', x);
+                event.target.setAttribute('data-y', y);
             },
-
 
             onend: function (event) {
                 event.target.style.transform ='';
                 event.target.removeAttribute('data-x');
                 event.target.removeAttribute('data-y');
-                GardenItemActions.gardenReleaseItem(that.props.item);
+
+                that.setState({isDragged:false});
+                GardenActions.releaseGardenItem(that.props.item);
+                that.checkDraggable();
             }
+        }).on('tap',function(event){
+            that.handleMouseDown(event);
+        }).on('hold',function(event){
+            that.handleMouseDown(event);
+            GardenActions.selectGardenItem(that.props.item);
         });
+        that.checkDraggable();
+    },
+
+    checkDraggable:function(){
+        if(!this.state.isActive)  this.interact.draggable({ enabled: false });
+        else  this.interact.draggable({ enabled: true });
     },
 
     handleMouseDown:function(sme){
-        GardenItemActions.gardenFocusItem(this.props.item);
-        this.setState({isDragged:true});
+        GardenActions.focusGardenItem(this.props.item);
+
     },
 
     handleMouseUp:function(sme){
-        this.setState({isDragged:false});
+        //this.setState({isDragged:false});
     },
 
     render: function() {
         return (
             <div
-                tabIndex={this.props.index}
-                className={'gardenItem ' + this.props.item.cl + ( this.state.isActive ? '' : ' disabled') }
+                tabIndex={this.props.item.odr}
+                className={'gardenItem ' + this.props.item.cl + ( (this.state.isActive || this.state.isDragged) ? '' : ' disabled') }
                 onMouseDown={this.handleMouseDown}
                 onMouseUp={this.handleMouseUp}
             >
-                <GardenItemContent item={this.props.item} />
+                <GardenItemContent
+                    isActive={this.state.isActive || this.state.isDragged}
+                    item={this.props.item}
+                />
             </div>
         );
     }

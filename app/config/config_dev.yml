@@ -1,5 +1,7 @@
 imports:
     - { resource: config.yml }
+    - { resource: @GardenBundle/Resources/config/config.yml }
+    - { resource: @GardenBundle/Resources/config/services.yml }
 
 framework:
     router:

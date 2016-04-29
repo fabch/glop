@@ -1,0 +1,6 @@
+services:
+    faker.provider.picto_provider:
+        class: GardenBundle\Util\Faker\PictoProvider
+        arguments: [@faker.generator]
+        tags:
+            - { name: bazinga_faker.provider }

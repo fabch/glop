@@ -7,11 +7,15 @@ var GardenStore = require('../stores/GardenStore');
 
 var Preloader = require('./utils/Preloader');
 var GardenItemSelector = require('./garden/GardenItemSelector');
+var GardenItemDesc = require('./garden/GardenItemDesc');
 var GardenIndicatorWrapper = require('./garden/GardenIndicatorWrapper');
 var GardenPointCounter = require('./garden/GardenPointCounter');
 var GardenField = require('./garden/GardenField');
 
 var Garden = React.createClass({
+
+    current_points : 0,
+
     getInitialState() {
         return GardenStore.getState();
     },
@@ -26,21 +30,8 @@ var Garden = React.createClass({
     },
 
     onChange(state) {
+        this.current_points = (state.garden.points ? state.garden.points : 0) - (state.selectedItem ? state.selectedItem.price  : 0);
         this.setState(state);
-    },
-
-    changeSelectedItem:function(old_item, new_item){
-        var points_change = (old_item ? old_item.price : 0) - (new_item ? new_item.price : 0);
-        var newState = update(this.state, {
-            garden: {
-                points: { $set: this.state.garden.points + points_change }
-            }
-        });
-        this.setState(newState);
-    },
-
-    dropSelectedItem:function(){
-        console.log(_params);
     },
 
     render() {
@@ -51,32 +42,34 @@ var Garden = React.createClass({
 
         return (
             <div id="AppWrapper">
-                <div id="GardenPointCounter">
+                <div id="GardenPointCounterWrapper">
                     <GardenPointCounter
                         key={'gardenPointCounter'}
-                        points={this.state.garden.points}
+                        points={this.current_points}
                     />
+                </div>
+                <div id="GardenItemSelectorWrapper">
+                    <GardenItemSelector
+                        key={'gardenItemSelector'}
+                        points={this.current_points}
+                        />
+                    <div style={{clear:'both'}}></div>
                 </div>
                 <div id="GardenIndicatorWrapper">
                     <GardenIndicatorWrapper
                         gardenIndicators={this.state.garden.indicators}
                     />
                 </div>
-                <div id="GardenItemSelector">
-                    <GardenItemSelector
-                        key={'gardenItemSelector'}
-                        points={this.state.garden.points}
-                        changeSelectedItem={this.changeSelectedItem}
-                    />
-                    <div style={{clear:'both'}}></div>
+                <div id="GardenItemDescWrapper">
+                    <GardenItemDesc item={this.state.focusedItem} />
                 </div>
-                <div id="GardenField">
+                <div id="GardenFieldWrapper">
                     <GardenField
                         key={'gardenField'}
                         tiles={this.state.garden.tiles}
                         isItems={this.state.isItems}
-                        dropSelectedItem={this.dropSelectedItem}
-                    />
+                        selectedItem={this.state.selectedItem}
+                        />
                 </div>
             </div>
         );

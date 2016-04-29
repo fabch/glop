@@ -38,8 +38,62 @@ class GardenActions {
     }
 
     gardenFailed(errorMessage) {
+        return errorMessage;
+    }
+
+    updateGardenItems(gardenItems) {
+        return gardenItems;
+    }
+
+    fetchGardenItems() {
+        return (dispatch) => {
+            dispatch();
+            GardenSource.fetch('api/gardenitems')
+                .then((response) => {
+                    //response.json();
+                    return JSON.parse(response)
+                })
+                .then((response) => {
+                    this.updateGardenItems(response);
+                })
+                .catch((error) => {
+                    this.gardenItemsFailed(error);
+                });
+        }
+    }
+
+    gardenItemsFailed(errorMessage) {
         console.log(errorMessage);
         return errorMessage;
+    }
+
+    focusGardenItem(gardenItem){
+        return gardenItem;
+    }
+
+    blurGardenItem(gardenItem){
+        return gardenItem;
+    }
+
+    selectGardenItem(gardenItem){
+        return gardenItem;
+    }
+
+    releaseGardenItem(gardenItem){
+        return gardenItem;
+    }
+
+    enterGardenTile(gardenTile){
+        return gardenTile;
+    }
+
+    leaveGardenTile(gardenTile){
+        return gardenTile;
+    }
+
+    dropGardenTile(gardenTile, gardenItem){
+        gardenTile.item = gardenItem;
+        return gardenTile;
     }
 }
 
