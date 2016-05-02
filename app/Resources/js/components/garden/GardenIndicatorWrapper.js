@@ -45,7 +45,6 @@ var GardenIndicator = React.createClass({
         var text = this.props.indicator.name + '-' + meterLevel +'%';
         return (
             <div className={'gardenIndicator '  + this.props.indicator.cl}>
-                {this.props.odr}
                 <span className={'gardenIndicatorPicto'} >
                     <img src={this.rootPath + 'images/pictos/' + this.props.indicator.picto } />
                 </span>
@@ -98,11 +97,6 @@ var GardenIndicatorWrapper = React.createClass({
                         <div className="bgEngiePurple"></div>
                     </div>
                 </div>
-
-                <p style={{fontSize:'1.2rem'}}>
-                    <span style={{float:'right'}}>400 <i className="ion-battery-charging"></i></span>
-                    <i className={'ion-happy'}></i> Martin J.
-                </p>
                 {_.map(this.props.gardenIndicators, (gardenIndicator, key) => {
                     return (
                         <GardenIndicator

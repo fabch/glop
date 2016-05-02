@@ -11,6 +11,7 @@ $smallPadding   : 1rem;
 $mediumPadding  : 2rem;
 $largePadding   : 4rem;
 
+$pictiSize      : 5rem;
 $topBarHeight   : 6rem;
 $sideBarWidth   : 18rem;
 $fieldWidth     : 26rem;
@@ -57,6 +58,13 @@ body {
     background: url('../images/engie_garden-1800x1000.jpg') no-repeat center top;
     background-attachment: fixed;
     background-size: cover;
+  }
+
+  #GardenPictiWrapper{
+    position: fixed;
+    top: $topBarHeight;
+    width: 100%;
+    height:$pictiSize;
   }
 
   #GardenIndicatorWrapper {
@@ -120,6 +128,19 @@ body {
 
 /****************************************************************************/
 /*
+/*          Picti
+/*
+/****************************************************************************/
+.gardenPictiWrapper{
+  width: 100%;
+  text-align:center;
+  img{
+     height:$pictiSize;
+  }
+}
+
+/****************************************************************************/
+/*
 /*          ITEMS DESC
 /*
 /****************************************************************************/
@@ -141,12 +162,18 @@ body {
     display:block;
     padding:0;
     text-align: center;
-    img{
+    div.imageWrapper{
       float:none;
       display: inline-block;
+      vertical-align: bottom;
+      background:#fff;
+      border-radius:50%;
+      padding:2px;
+      margin: -1px 2px -2px -6px;
+    }
+    img{
       height: 1.2em;
       vertical-align: bottom;
-      margin-right:0.2em;
     }
     li{
       display: inline-block;

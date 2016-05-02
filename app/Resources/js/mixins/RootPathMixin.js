@@ -2,7 +2,7 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 
 var RootPathMixin = {
-    rootPath : '../'
+    rootPath : './'
 };
 
 module.exports = RootPathMixin;

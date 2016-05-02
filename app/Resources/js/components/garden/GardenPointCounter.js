@@ -48,7 +48,7 @@ var GardenPointCounter = React.createClass({
                         <span ref={'pointCounter'} >{this.props.points} <i className="ion-battery-charging"></i></span>
                     </span>
                     <span className="topCenter">
-                        <i className={'ion-happy'}></i> Martin J.
+
                     </span>
                 </div>
             </div>

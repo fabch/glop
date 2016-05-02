@@ -34,6 +34,7 @@ var GardenIndicators = _.chain([1,2,3]).map(function(num, key){
         min           : min,
         max           : max
     }).value();
+
 }).indexBy('name_canonical').value();
 
 var GardenItem = {
@@ -46,7 +47,7 @@ var GardenItem = {
     cl            : 'picto-cl1',
     odr           : 0,
     price         : 100,
-    infos         : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam in finibus urna. Quisque vel magna pulvinar, interdum neque sed, lacinia mauris. ',
+    infos         : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam in finibus urna.',
     percs         : null
 
 };

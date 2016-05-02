@@ -2,6 +2,8 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var update = require('react-addons-update');
 
+var RootPathMixin = require('../mixins/RootPathMixin');
+
 var GardenActions = require('../actions/GardenActions');
 var GardenStore = require('../stores/GardenStore');
 
@@ -13,6 +15,8 @@ var GardenPointCounter = require('./garden/GardenPointCounter');
 var GardenField = require('./garden/GardenField');
 
 var Garden = React.createClass({
+
+    mixins :[ RootPathMixin ],
 
     current_points : 0,
 
@@ -47,6 +51,11 @@ var Garden = React.createClass({
                         key={'gardenPointCounter'}
                         points={this.current_points}
                     />
+                </div>
+                <div id="GardenPictiWrapper">
+                    <div className="gardenPictiWrapper">
+                        <img src={this.rootPath + '../../pictis/picti.png'} className="animated rotateIn" />
+                    </div>
                 </div>
                 <div id="GardenItemSelectorWrapper">
                     <GardenItemSelector

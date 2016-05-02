@@ -48,7 +48,10 @@ var GardenItemDesc = React.createClass({
                     <ul>
                         { _.map(this.props.item.percs, (perc, key) => {
                             return (
-                                <li key={'perc' + key} className={perc.indicator.cl}><img src={this.rootPath + 'images/pictos/' + perc.indicator.picto } /><span>{perc.val + perc.unit}</span></li>
+                                <li key={'perc' + key} className={perc.indicator.cl}>
+                                    <div className="imageWrapper"><img src={this.rootPath + 'images/pictos/' + perc.indicator.picto } /></div>
+                                    <span>{perc.val + perc.unit}</span>
+                                </li>
                             );
                         }) }
                     </ul>
